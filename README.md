@@ -8,13 +8,13 @@ This repo provides the high level steps to create a RAG-based, Gen AI travel ass
 * Source: Google Cloud PostgreSQL (G1 instance)
 * Fivetran Destination: SNOWFLAKE_LLM_LAB
 * Schema name: yourlastname_yourfirstname 
-* Host: 34.94.122.157 (see the lab guide for credentials)
+* Host: 34.94.122.157 **(see the lab guide for credentials)**
 * Schema: agriculture
 * Table: california_wine_country_visits
 
 ### STEP 2: View the new dataset in Snowflake Snowsight
 
-* Snowflake Account: https://dma21732.snowflakecomputing.com (see the lab guide for credentials)
+* Snowflake Account: https://dma21732.snowflakecomputing.com **(see the lab guide for credentials)**
 * Snowflake Database: HOL_DATABASE
 * Schema: yourlastname_yourfirstname_agriculture 
 * Table: california_wine_country_visits
