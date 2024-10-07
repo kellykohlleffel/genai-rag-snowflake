@@ -1,7 +1,7 @@
 # Create a wine country travel assistant with Fivetran, Snowflake, Cortex, and Streamlit
 ## Scripts and code for the Fivetran + Snowflake RAG-based, Gen AI Hands on Lab (60 minute version)
 
-This repo provides the high level steps to create a RAG-based, Gen AI travel assistant using Fivetran and Snowflake (detailed instructions are in the lab guide provided by your lab instructor). The required transformation scripts and the required Streamlit code is included. This repo is the "easy button" to copy/paste the transformations and the code. If you have any issues with copy/paste, you can download the code [here](https://github.com/rikthefrog/rag-fivetran/archive/refs/heads/main.zip).
+This repo provides the high level steps to create a RAG-based, Gen AI travel assistant using Fivetran and Snowflake (detailed instructions are in the lab guide provided by your lab instructor). The required transformation scripts and the required Streamlit code are both included. This repo is the "easy button" to copy/paste the transformations and the code. If you have any issues with copy/paste, you can download the code [here](https://github.com/rikthefrog/rag-fivetran/archive/refs/heads/main.zip).
 
 ### STEP 1: Create a Fivetran connector to Snowflake
 
