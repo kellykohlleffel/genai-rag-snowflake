@@ -23,18 +23,15 @@ This repo provides the high level steps to create a RAG-based, Gen AI travel ass
 ### STEP 3: Transform the new structured dataset into a single string to simulate an unstructured document
 * Open a new worksheet in Snowflake Snowsight
 * Make sure you set the worksheet context at the top: **HOL_DATABASE** and **yourlastname_yourfirstname schema name**
-* Copy and paste the following transformation scripts in your worksheet [**transformation scripts**](01-transformations.sql)/)
+* Copy and paste these [**transformation scripts**](01-transformations.sql) in your Snowsight worksheet 
 * Highlight the first transformation script and click run
 * This will create a winery_information table using CONCAT to create a single string for each winery or vineyard (creates an "unstructured" document for each winery or vineyard)
 
 ### STEP 4: Create the embeddings and the vector table from the winery_information single string table
-*
-
 * Highlight the second transformation script and click run
-* This will create your embeddings and a vector table that will be referenced later by Cortex LLM functions and the Streamlit application
-* Concatenate data from the Amsterdam table in **single_string_travel_review** see [script](./01-table-create.sql)
-* Create the Vector table in **single_string_travel_review_vector** see [script](./02-add-vector-table.sql)
-* Check the data in just created vector table **single_string_travel_review_vector** see [script](./03-show-content-vector-table.sql)
+* This will create your embeddings and a vector table that will be referenced later by Cortex LLM functions and your Streamlit application
+
+
 
 ### Create the streamlit application
 
