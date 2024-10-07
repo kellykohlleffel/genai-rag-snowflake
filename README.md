@@ -23,7 +23,7 @@ This repo provides the high level steps to create a RAG-based, Gen AI travel ass
 ### STEP 3: Transform the new structured dataset into a single string to simulate an unstructured document
 * Open a new worksheet in Snowflake Snowsight
 * Make sure you set the worksheet context at the top: **HOL_DATABASE** and **yourlastname_yourfirstname schema name**
-* Copy and paste the following transformation scripts in your worksheet [**transformation scripts**](01 transformations)/)
+* Copy and paste the following transformation scripts in your worksheet [**transformation scripts**](01-transformations.sql)/)
 * Highlight the first transformation script and click run
 * This will create a winery_information table using CONCAT to create a single string for each winery or vineyard (creates an "unstructured" document for each winery or vineyard)
 
