@@ -6,7 +6,7 @@ This repo provides the high level steps to create a RAG-based, Gen AI travel ass
 ### STEP 1: Create a Fivetran connector to Snowflake
 
 * Source: Google Cloud PostgreSQL (G1 instance)
-* Fivetran Destination: DATABRICKS_UNITY_CATALOG_SERVERLESS
+* Fivetran Destination: SNOWFLAKE_LLM_LAB
 * Schema name: yourlastname_yourfirstname 
 * Host: 34.94.122.157 (see the lab guide for credentials)
 * Schema: agriculture
@@ -25,7 +25,7 @@ This repo provides the high level steps to create a RAG-based, Gen AI travel ass
 * Make sure you set the worksheet context at the top: **HOL_DATABASE** and **yourlastname_yourfirstname schema name**
 * Copy and paste these [**transformation scripts**](01-transformations.sql) in your Snowsight worksheet 
 * Highlight the first transformation script and click run
-* This will create a winery_information table using CONCAT to create a single string for each winery or vineyard (creates an "unstructured" document for each winery or vineyard)
+* This will create a new winery_information table using the CONCAT function. Each multi-column record (winery or vineyard) will now be a single string (creates an "unstructured" document for each winery or vineyard)
 
 ### STEP 4: Create the embeddings and the vector table from the winery_information single string table
 * Highlight the second transformation script in your Snowflake Snowsight worksheet and click run
