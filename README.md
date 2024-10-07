@@ -14,7 +14,7 @@ This repo provides the high level steps to create a RAG-based, Gen AI travel ass
 
 ### STEP 2: View the new dataset in Snowflake Snowsight
 
-* **Snowflake Account**: https://dma21732.snowflakecomputing.com **(see the lab guide for credentials)**
+* **Snowflake Account**: **https://dma21732.snowflakecomputing.com** **(see the lab guide for credentials)**
 * **Snowflake Database**: HOL_DATABASE
 * **Schema**: yourlastname_yourfirstname_agriculture 
 * **Table**: california_wine_country_visits
