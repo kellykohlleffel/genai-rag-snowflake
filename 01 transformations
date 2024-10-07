@@ -1,5 +1,5 @@
 /** Transformation 1 **/
-/** Create each winery and vineyard review as a single field vs multiple fields **/
+/** Create each winery and vineyard review as a single field vs multiple fields to convert a structured dataset into unstructured format **/
 CREATE OR REPLACE TABLE vineyard_data_single_string AS 
     SELECT WINERY_OR_VINEYARD, CONCAT(
         'The winery name is ', IFNULL(WINERY_OR_VINEYARD, ' Name is not known'), '.',
