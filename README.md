@@ -21,26 +21,25 @@ This repo provides the high level steps to create a RAG-based, Gen AI travel ass
 * Click on **Data Preview** to take a look
 
 ### STEP 3: Transform the new structured dataset into a single string to simulate an unstructured document
-* Open a new worksheet in Snowflake Snowsight
+* Open a new worksheet in Snowflake Snowsight (left gray navigation under Projects)
 * Make sure you set the worksheet context at the top: **HOL_DATABASE** and **yourlastname_yourfirstname schema name**
 * Copy and paste these [**transformation scripts**](01-transformations.sql) in your Snowsight worksheet 
 * Highlight the first transformation script and click run
 * This will create a winery_information table using CONCAT to create a single string for each winery or vineyard (creates an "unstructured" document for each winery or vineyard)
 
 ### STEP 4: Create the embeddings and the vector table from the winery_information single string table
-* Highlight the second transformation script and click run
+* Highlight the second transformation script in your Snowflake Snowsight worksheet and click run
 * This will create your embeddings and a vector table that will be referenced later by Cortex LLM functions and your Streamlit application
 
+### STEP 5: Run a SELECT statement to check out the LLM-friendly "text" document table and embeddings table
+* Highlight the third script **SELECT * FROM vineyard_data_vectors WHERE winery_information LIKE '%winery name is Kohlleffel Vineyards%';** in your Snowflake Snowsight worksheet and click run
+* This will show you the complete results of the 2 transformations that you just ran
 
+### STEP 6: Create the a Streamlit app and build a Visit Assistant Chatbot
+* Open a new Streamlit application in Snowflake Snowflake (left gray navigation under Projects)
+* Highlight the "hello world" Streamlit code and delete it
+* Click Run to clear the preview area
+* Copy and paste the [**Streamlit code**](02-streamlit-code.py) in the Streamlit editor
 
-### Create the streamlit application
-
-* Copy this [code](./04-streamlit-code.py) in the streamlit editor.
-
-### Finaly have fun
-
+### Step 7: Have some fun checking out the travel assistant features and creating prompts for unique visits
 * Test the streamlit application with your questions
-
-## Fill out our questionnaire
-
-[questionnaire](https://forms.gle/jn8nNqjzTnCeZLQT7)
