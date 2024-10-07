@@ -41,5 +41,5 @@ This repo provides the high level steps to create a RAG-based, Gen AI travel ass
 * Click Run to clear the preview pane
 * Copy and paste the [**Streamlit code**](02-streamlit-code.py) in the Streamlit editor
 
-### Step 7: Have some fun checking out the travel assistant features and creating prompts for unique visits
+### Step 7: Have some fun checking out the travel assistant features and creating prompts for unique visits using RAG
 * Test the streamlit application with your own prompts or check out the sample prompts in the lab guide
