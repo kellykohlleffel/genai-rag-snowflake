@@ -62,6 +62,18 @@ CREATE OR REPLACE TABLE vineyard_data_single_string AS
     ) AS winery_information
     FROM california_wine_country_visits;
 
+    /** Transformation #2 - Create the winery_information table concat to single string per winery (creates an "unstructured" doc per winery/vineyard)
+    /** Create the vector table from the wine review single field table **/
+      CREATE or REPLACE TABLE vineyard_data_vectors AS 
+            SELECT winery_or_vineyard, winery_information, 
+            snowflake.cortex.EMBED_TEXT_768('e5-base-v2', winery_information) as WINERY_EMBEDDING 
+            FROM vineyard_data_single_string;
+
+    /** Select a control record to see the LLM-friendly "text" document table and the embeddings table **/
+    SELECT *
+    FROM vineyard_data_vectors
+    WHERE winery_information LIKE '%winery name is Kohlleffel Vineyards%';
+
 ```
 
 ### STEP 4: Create the embeddings and the vector table from the winery_information single string table
