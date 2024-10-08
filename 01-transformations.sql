@@ -1,4 +1,4 @@
-/** Transformation #1 - Create the winery_information table concat to single string per winery (creates an "unstructured" doc per winery/vineyard)
+/** Transformation #1 - Creates a vineyard_data_single_string table that converts multi-column structured data into an LLM-friendly single-string formatted "unstructured" document for each winery/vineyard **/
 /** Create each winery and vineyard review as a single field vs multiple fields **/
 CREATE OR REPLACE TABLE vineyard_data_single_string AS 
     SELECT WINERY_OR_VINEYARD, CONCAT(
@@ -32,13 +32,14 @@ CREATE OR REPLACE TABLE vineyard_data_single_string AS
     ) AS winery_information
     FROM california_wine_country_visits;
 
-    /** Create the vector table from the wine review single field table **/
+/** Using the Snowflake Cortex embed_text_768 LLM function, this transformation creates embeddings from the newly created vineyard_data_single_string table and creates a vector table called winery_embedding **/    
+/** Create the vector table from the wine review single field table **/
       CREATE or REPLACE TABLE vineyard_data_vectors AS 
             SELECT winery_or_vineyard, winery_information, 
             snowflake.cortex.EMBED_TEXT_768('e5-base-v2', winery_information) as WINERY_EMBEDDING 
             FROM vineyard_data_single_string;
 
-    /** Select a control record to see the LLM-friendly "text" document table and the embeddings table **/
+/** Select a control record to see the LLM-friendly "text" document table and the embeddings table **/
     SELECT *
     FROM vineyard_data_vectors
     WHERE winery_information LIKE '%winery name is Kohlleffel Vineyards%';
