@@ -81,7 +81,8 @@ CREATE OR REPLACE TABLE vineyard_data_single_string AS
 * This will create your embeddings and a vector table that will be referenced later by Cortex LLM functions and your Streamlit application
 
 ```
-    /** Create the vector table from the wine review single field table **/
+/** Transformation #2 - Using the Snowflake Cortex embed_text_768 LLM function, creates embeddings from the newly created vineyard_data_single_string table and creates a vector table called winery_embedding.
+/** Create the vector table from the wine review single field table **/
       CREATE or REPLACE TABLE vineyard_data_vectors AS 
             SELECT winery_or_vineyard, winery_information, 
             snowflake.cortex.EMBED_TEXT_768('e5-base-v2', winery_information) as WINERY_EMBEDDING 
@@ -93,7 +94,7 @@ CREATE OR REPLACE TABLE vineyard_data_single_string AS
 * This will show you the complete results of the 2 transformations that you just ran
 
 ```
-    /** Select a control record to see the LLM-friendly "text" document table and the embeddings table **/
+/** Select a control record to see the LLM-friendly "text" document table and the embeddings table **/
     SELECT *
     FROM vineyard_data_vectors
     WHERE winery_information LIKE '%winery name is Kohlleffel Vineyards%';
