@@ -1,4 +1,4 @@
-/** Transformation #1 - Creates a vineyard_data_single_string table that converts multi-column structured data into an LLM-friendly single-string formatted "unstructured" document for each winery/vineyard **/
+/** Transformation #1: Creates a vineyard_data_single_string table that converts multi-column structured data into an LLM-friendly single-string formatted "unstructured" document for each winery/vineyard **/
 /** Create each winery and vineyard review as a single field vs multiple fields **/
 CREATE OR REPLACE TABLE vineyard_data_single_string AS 
     SELECT WINERY_OR_VINEYARD, CONCAT(
@@ -32,7 +32,7 @@ CREATE OR REPLACE TABLE vineyard_data_single_string AS
     ) AS winery_information
     FROM california_wine_country_visits;
 
-/** Using the Snowflake Cortex embed_text_768 LLM function, this transformation creates embeddings from the newly created vineyard_data_single_string table and creates a vector table called winery_embedding **/    
+/** Transformation #2: Using the Snowflake Cortex embed_text_768 LLM function, this transformation creates embeddings from the newly created vineyard_data_single_string table and creates a vector table called winery_embedding **/    
 /** Create the vector table from the wine review single field table **/
       CREATE or REPLACE TABLE vineyard_data_vectors AS 
             SELECT winery_or_vineyard, winery_information, 
