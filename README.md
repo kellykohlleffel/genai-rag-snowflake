@@ -28,7 +28,7 @@ This repo provides the high level steps to create a RAG-based, Gen AI travel ass
 * This will create a new winery_information table using the CONCAT function. Each multi-column record (winery or vineyard) will now be a single string (creates an "unstructured" document for each winery or vineyard)
 
 ```
-/** Transformation #1 - Create the winery_information table concat to single string per winery (creates an "unstructured" doc per winery/vineyard)
+/** Transformation #1 - Create the vineyard_data_single_string table using concat and prefixes for columns (creates an "unstructured" doc for each winery/vineyard)
 /** Create each winery and vineyard review as a single field vs multiple fields **/
 CREATE OR REPLACE TABLE vineyard_data_single_string AS 
     SELECT WINERY_OR_VINEYARD, CONCAT(
@@ -62,7 +62,7 @@ CREATE OR REPLACE TABLE vineyard_data_single_string AS
     ) AS winery_information
     FROM california_wine_country_visits;
 
-    /** Transformation #2 - Create the winery_information table concat to single string per winery (creates an "unstructured" doc per winery/vineyard)
+    /** Transformation #2 - Using the Snowflake Cortex embed_text_768 LLM function, creates embeddings from the newly created vineyard_data_single_string table and creates a vector table called winery_embedding.
     /** Create the vector table from the wine review single field table **/
       CREATE or REPLACE TABLE vineyard_data_vectors AS 
             SELECT winery_or_vineyard, winery_information, 
