@@ -13,16 +13,17 @@ import time
 # Change this list as needed to add/remove model capabilities.
 MODELS = [
     "reka-flash",
+    "llama3.2-3b",
+    "llama3.1-8b",
+    "jamba-1.5-large",
     "llama3.1-70b",
     "llama3.1-405b",
     "mistral-7b",
     "mixtral-8x7b",
     "mistral-large2",
-    "jamba-instruct", 
     "snowflake-arctic",
     "gemma-7b"
 ]
-
 
 # Change this value to control the number of tokens you allow the user to change to control RAG context. In
 # this context for the data used, 1 chunk would be approximately 200-400 tokens.  So a limit is placed here
