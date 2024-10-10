@@ -380,6 +380,6 @@ if __name__ == "__main__":
 
 ### Fivetran + Snowflake California Wine Country Visit Assistant
 
-![Travel Assistant Screenshot](repo_images/2024-10-10%20Streamlit%20-%20Travel%20Assistant.png)
+![Travel Assistant Screenshot](images/2024-10-10 Streamlit - Travel Assistant.png)
 
 -----
