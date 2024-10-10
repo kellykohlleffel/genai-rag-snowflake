@@ -378,6 +378,8 @@ if __name__ == "__main__":
 ### Step 7: Have some fun checking out the travel assistant features and creating prompts for unique visits using RAG
 * Test the streamlit application with your own prompts or check out the sample prompts in the lab guide
 
-###
+### Fivetran + Snowflake California Wine Country Visit Assistant
+
+![Travel Assistant Screenshot](repo_images/2024-10-10%20Streamlit%20-%20Travel%20Assistant.png)
 
 -----
