@@ -378,6 +378,15 @@ if __name__ == "__main__":
 ### Step 7: Have some fun checking out the travel assistant features and creating prompts for unique visits using RAG
 * Test the streamlit application with your own prompts or check out the sample prompts in the lab guide
 
+Example prompt 1 (Note: Kohlleffel Vineyards is a control record that only lives in the PostgreSQL dataset that moved into Snowflake)
+```
+Tell me everything you know about kohlleffel vineyards in 6-7 paragraphs. I want to know about their dog and the types of wood that you can select for the fire pits.
+```
+Example prompt 2 (Note: Millman Estate is also a control record that only lives in the PostgreSQL dataset that moved into Snowflake)
+```
+Tell me about kohlleffel vineyards and millman estate. Also, provide me with a 2 day itinerary with a catchy name that includes day 1 stops at kohlleffel vineyards and millman estate. Then on Day 2 I want to visit Continuum Estate and Del Dotto Vineyards. Include information about the dogs at any of the wineries. Also, include recommendations for restaurants and hotels throughout the visit. Also, what types of clothing should I bring for this time of year. Lastly, what will this trip cost me?
+```
+
 ### Fivetran + Snowflake California Wine Country Visit Assistant
 
 ![Travel Assistant Screenshot](./images/2024-10-10%20Streamlit%20-%20Travel%20Assistant.png)
