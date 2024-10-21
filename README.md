@@ -26,13 +26,14 @@ This repo provides the high-level steps to create a RAG-based, Gen AI travel ass
 
 * **Source**: Google Cloud PostgreSQL (G1 instance)
 * **Fivetran Destination**: SNOWFLAKE_LLM_LAB_X
-* **Schema name**: yourlastname 
+* **Destination Schema prefix (connector name)**: yourlastname 
 * **Host**: 34.94.122.157 **(NOTE - see the lab guide or your email for credentials and additional host identifiers)**
 ```
 34.94.122.157
 ```
-* **Schema**: agriculture
-* **Table**: california_wine_country_visits
+* **Data source sync selections:**
+    * **Schema**: agriculture
+    * **Table**: california_wine_country_visits
 
 ### STEP 2: View the new dataset in Snowflake Snowsight
 
@@ -46,7 +47,7 @@ This repo provides the high-level steps to create a RAG-based, Gen AI travel ass
 * Open a New Worksheet in **Snowflake Snowsight** (left gray navigation under Projects)
 * Make sure you set the worksheet context at the top: **HOL_DATABASE** and **yourlastname_agriculture** schema name
 * Copy and paste these [**transformation scripts**](01-transformations.sql) in your Snowsight worksheet
-* Position your cursor anywhere in the first transformation script and click run
+* Highlight only the first transformation script in the editor and click run
 * This will create a new winery_information table using the CONCAT function. Each multi-column record (winery or vineyard) will now be a single string (creates an "unstructured" document for each winery or vineyard)
 
 ```
@@ -84,7 +85,7 @@ CREATE OR REPLACE TABLE vineyard_data_single_string AS
     ) AS winery_information
     FROM california_wine_country_visits;
 
-/** Transformation #2 - Using the Snowflake Cortex embed_text_768 LLM function, creates embeddings from the newly created vineyard_data_single_string table and creates a vector table called winery_embedding.
+/** Transformation #2 - Using the Snowflake Cortex embed_text_768 LLM function, this transformation creates embeddings from the newly created vineyard_data_single_string table and creates a vector table called winery_embedding.
 /** Create the vector table from the wine review single field table **/
       CREATE or REPLACE TABLE vineyard_data_vectors AS 
             SELECT winery_or_vineyard, winery_information, 
@@ -99,11 +100,11 @@ CREATE OR REPLACE TABLE vineyard_data_single_string AS
 ```
 
 ### STEP 4: Create the embeddings and the vector table from the winery_information single string table
-* Position your cursor anywhere in the second transformation script in your Snowflake Snowsight worksheet and click run
+* Highlight only the second transformation script in your Snowflake Snowsight worksheet and click run
 * This will create your embeddings and a vector table that will be referenced later by Cortex LLM functions and your Streamlit application
 
 ```
-/** Transformation #2 - Using the Snowflake Cortex embed_text_768 LLM function, creates embeddings from the newly created vineyard_data_single_string table and creates a vector table called winery_embedding.
+/** Transformation #2 - Using the Snowflake Cortex embed_text_768 LLM function, this transformation creates embeddings from the newly created vineyard_data_single_string table and creates a vector table called winery_embedding.
 /** Create the vector table from the wine review single field table **/
       CREATE or REPLACE TABLE vineyard_data_vectors AS 
             SELECT winery_or_vineyard, winery_information, 
@@ -112,7 +113,7 @@ CREATE OR REPLACE TABLE vineyard_data_single_string AS
 ```
 
 ### STEP 5: Run a SELECT statement to check out the LLM-friendly "text" document table and embeddings table
-* Position your cursor anywhere in the third script **SELECT * FROM vineyard_data_vectors WHERE winery_information LIKE '%winery name is Kohlleffel Vineyards%';** in your Snowflake Snowsight worksheet and click run
+* Highlight only the third script **SELECT * FROM vineyard_data_vectors WHERE winery_information LIKE '%winery name is Kohlleffel Vineyards%';** in your Snowflake Snowsight worksheet and click run
 * This will show you the complete results of the 2 transformations that you just ran
 
 ```
