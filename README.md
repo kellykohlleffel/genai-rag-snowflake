@@ -3,26 +3,45 @@
 
 This repo provides the high-level steps to create a RAG-based, Gen AI travel assistant using Fivetran and Snowflake (detailed instructions are in the lab guide provided by your lab instructor). The required transformation scripts and the required Streamlit code are both included. This repo is the "easy button" to copy/paste the transformations and the code. If you have any issues with copy/paste, you can download the code [here](https://github.com/kellykohlleffel/genai-rag-snowflake/archive/refs/heads/main.zip).
 
+### STEP 0: Prerequisite - Access the Fivetran lab account
+
+* For this hands-on workshop, we have provisioned you into a Fivetran Account specifically for this lab. Let’s access it now.
+
+* Access the email account that you provided for this lab and look for an email from notifications@fivetran.com that was sent to you today - it will look like this:
+
+![Join the Fivetran lab account](./images/join_the_fivetran_hol_account_email.png)
+
+* If you **DO NOT** already have a Fivetran account, click on the Accept Invite link and you will be sent to the Fivetran sign-up page for the lab account. Note that Fivetran requires at least a 12-CHARACTER PASSWORD. Once you’ve entered your information, click Sign up.
+
+* If you **DO** already have a Fivetran account, follow these steps:
+    * Accept invite from email
+    * **Switch Account** to **Fivetran_HoL** by clicking "Switch account" in the upper left of your Fivetran UI
+    * Login to Fivetran_HoL
+        * Select forgot password
+        * Go to the email for password reset (from fivetran)
+        * Set password
+        * Login
+
 ### STEP 1: Create a Fivetran connector to Snowflake
 
 * **Source**: Google Cloud PostgreSQL (G1 instance)
-* **Fivetran Destination**: SNOWFLAKE_LLM_LAB
-* **Schema name**: yourlastname_yourfirstname 
-* **Host**: 34.94.122.157 **(see the lab guide or your email for credentials)**
+* **Fivetran Destination**: SNOWFLAKE_LLM_LAB_X
+* **Schema name**: yourlastname 
+* **Host**: 34.94.122.157 **(NOTE - see the lab guide or your email for credentials and additional host identifiers)**
 * **Schema**: agriculture
 * **Table**: california_wine_country_visits
 
 ### STEP 2: View the new dataset in Snowflake Snowsight
 
-* **Snowflake Account**: **https://dma21732.snowflakecomputing.com** **(see the lab guide or your email for credentials)**
+* **Snowflake Account**: **https://dma21732.snowflakecomputing.com** **(NOTE - see the lab guide or your email for credentials)**
 * **Snowflake Database**: HOL_DATABASE
-* **Schema**: yourlastname_yourfirstname_agriculture 
+* **Schema**: yourlastname_agriculture 
 * **Table**: california_wine_country_visits
 * Click on **Data Preview** to take a look
 
 ### STEP 3: Transform the new structured dataset into a single string to simulate an unstructured document
 * Open a New Worksheet in **Snowflake Snowsight** (left gray navigation under Projects)
-* Make sure you set the worksheet context at the top: **HOL_DATABASE** and **yourlastname_yourfirstname schema name**
+* Make sure you set the worksheet context at the top: **HOL_DATABASE** and **yourlastname_agriculture** schema name
 * Copy and paste these [**transformation scripts**](01-transformations.sql) in your Snowsight worksheet
 * Position your cursor anywhere in the first transformation script and click run
 * This will create a new winery_information table using the CONCAT function. Each multi-column record (winery or vineyard) will now be a single string (creates an "unstructured" document for each winery or vineyard)
@@ -102,6 +121,7 @@ CREATE OR REPLACE TABLE vineyard_data_single_string AS
 
 ### STEP 6: Create the a Streamlit app and build a Visit Assistant Chatbot
 * Open a New Streamlit application in Snowflake Snowflake (left gray navigation under Projects)
+* Make sure you set the Streamlit app context: **HOL_DATABASE** and **yourlastname_agriculture** schema name
 * Highlight the "hello world" Streamlit code and delete it
 * Click Run to clear the preview pane
 * Copy and paste the [**Streamlit code**](02-streamlit-code.py) in the Streamlit editor
