@@ -400,7 +400,21 @@ if __name__ == "__main__":
 ```
 
 ### Step 7: Have some fun checking out the travel assistant features and creating prompts for unique visits using RAG
-* Test the streamlit application with your own prompts or check out the sample prompts in the lab guide
+* Check out the key features of the application and test the Streamlit application with your own prompts or check out the sample prompts below.
+
+* Key features
+
+    * Choose the Snowflake Cortex LLM (model) that you want the Assistant (and Snowflake Cortex) to use. Snowflake Cortex LLM functions and models are specific to each Snowflake region. Our lab is running in aws-us-west2. [Here are the Snowflake Cortex LLMs that are available by region](https://docs.snowflake.com/en/user-guide/snowflake-cortex/llm-functions#availability).
+
+    * You can toggle between the Assistant **“using”** or **“not using”** your new Fivetran dataset as context (use Retrieval Augmented Generation, RAG, or don't use RAG). If you choose NOT to use RAG and the new Fivetran dataset as context, the models will be operating solely from their original training dataset.
+
+    * Advanced options: The **“Select number of context chunks”** setting allows you to control how many chunks/records are passed to the LLM to be used for RAG processing.  This can be useful when you begin seeing issues like too much data sent to the LLM (too high of a chunk number) or where data returns as “unknown” or badly hallucinates on RAG data (too low of a chunk number).  The names of the wineries used will be displayed at the bottom of the results so you can see which RAG items were selected.
+
+        * Special note about **chunks**: Inspect the number of chunks and which chunks are sent to the LLM.  If your prompt is asking for 7 wineries and chunk size is set to 6, for example, then you would need to increase your chunk size (try 10) to ensure the full context you want sent to the LLM is added.
+    
+    * You can "reset" your conversation with the CA Wine Country Visit Assistant at any time by clicking the **“Reset conversation”** button. That will clear your input, but your settings in the side panel remain the same.
+    
+    * After each run, inspect the **token count** at the bottom of the response (see image below). Note the differences in token size when RAG is turned off and on as well as the size and complexity of the prompt. Review the [Snowflake model restrictions](https://docs.snowflake.com/en/user-guide/snowflake-cortex/llm-functions#model-restrictions) and [cost considerations](https://docs.snowflake.com/en/user-guide/snowflake-cortex/llm-functions#cost-considerations) to understand more about these models, token inputs, and token costs.
 
 **Example prompt 1** (Note: Kohlleffel Vineyards is a control record that only lives in the PostgreSQL dataset that Fivetran moved into Snowflake)
 ```
@@ -410,6 +424,13 @@ Tell me everything you know about kohlleffel vineyards in 6-7 paragraphs. I want
 ```
 Tell me about kohlleffel vineyards and millman estate. Also, provide me with a 2 day itinerary with a catchy name that includes day 1 stops at kohlleffel vineyards and millman estate. Then on Day 2 I want to visit Continuum Estate and Del Dotto Vineyards. Include information about the dogs at any of the wineries. Also, include recommendations for restaurants and hotels throughout the visit. Also, what types of clothing should I bring for this time of year. Lastly, what will this trip cost me?
 ```
+
+**Control records in the PostgreSQL dataset (for testing RAG)**
+* Kohlleffel Vineyards
+* Millman Estate
+* Hrncir Family Cellars
+* Kai Lee Family Cellars
+* Tony Kelly Pamont Vineyards
 
 ### Fivetran + Snowflake California Wine Country Visit Assistant
 
